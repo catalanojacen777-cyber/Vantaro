@@ -1,0 +1,246 @@
+import { s } from '@/lib/ai/schema';
+import { F, PLATFORMS_SOCIAL } from '../fields';
+import type { AiTool } from '../types';
+
+export const contentTools: AiTool[] = [
+  {
+    kind: 'ai',
+    slug: 'blog-ideas-generator',
+    name: 'Blog Ideas Generator',
+    category: 'content',
+    summary: 'Article ideas your customers would search for, each with a working outline.',
+    answer:
+      'The Blog Ideas Generator suggests article topics that answer real questions your audience has, groups them by where the reader is in their decision, and gives each one a short outline you can write from.',
+    fields: [F.business(), F.audience(true), F.text('topics', 'Topics you can speak to', { max: 300 })],
+    examples: [{ label: 'Roofing company', values: { business: 'Residential roof repair and replacement, with free drone inspections.', audience: 'Homeowners after a storm', topics: 'Insurance claims, materials, spotting damage' } }],
+    outputLabel: 'Blog post ideas with outlines',
+    schema: s.obj({
+      ideas: s.arr(
+        s.obj({
+          title: s.short('Working title', 110),
+          reader_question: s.short('The question the reader is asking', 200),
+          stage: s.enum(['Learning', 'Comparing', 'Ready to buy'], 'Reader stage'),
+          outline: s.arr(s.short('An outline point', 140), 3, 6, 'Outline'),
+          cta: s.short('A natural next step for the reader', 140),
+        }),
+        6,
+        8,
+        'Ideas',
+      ),
+    }),
+    view: [
+      {
+        kind: 'cards',
+        key: 'ideas',
+        title: 'title',
+        body: 'reader_question',
+        badges: [{ key: 'stage', label: 'Reader stage' }],
+        fields: [
+          { key: 'outline', label: 'Outline' },
+          { key: 'cta', label: 'Call to action' },
+        ],
+      },
+    ],
+    task: 'Suggest blog articles anchored on genuine reader questions. Do not mention search volumes.',
+    subjectField: 'business',
+    promptVersion: 'v1',
+    limitations: ['Topics are not checked against search data. Validate with a keyword tool if search traffic matters.'],
+    related: ['keyword-generator', 'title-generator', 'content-ideas-generator'],
+  },
+  {
+    kind: 'ai',
+    slug: 'content-ideas-generator',
+    name: 'Content Ideas Generator',
+    category: 'content',
+    summary: 'Content concepts across formats, built around what your audience cares about.',
+    answer:
+      'The Content Ideas Generator proposes content concepts across formats (posts, videos, emails, guides) aimed at your specific audience, each with a hook and the reason it should resonate.',
+    fields: [
+      F.business(),
+      F.audience(true),
+      F.select('goal', 'Content goal', ['Build trust', 'Generate leads', 'Educate customers', 'Drive sales of a product', 'Grow a following']),
+    ],
+    examples: [{ label: 'Personal trainer', values: { business: 'In-home personal training for adults over 50, focused on strength and balance.', audience: 'Active adults 50+ and their adult children', goal: 'Build trust' } }],
+    outputLabel: 'Content concepts',
+    schema: s.obj({
+      concepts: s.arr(
+        s.obj({
+          concept: s.short('The content idea', 140),
+          format: s.enum(['Short video', 'Carousel', 'Written post', 'Email', 'Long-form guide', 'Live session', 'Podcast'], 'Format'),
+          hook: s.short('The opening line or first seconds', 180),
+          why: s.short('Why this audience would care', 200),
+        }),
+        8,
+        10,
+        'Concepts',
+      ),
+      series_idea: s.short('A recurring series idea that could anchor a calendar', 240),
+    }),
+    view: [
+      { kind: 'cards', key: 'concepts', title: 'concept', body: 'why', badges: [{ key: 'format', label: 'Format' }], fields: [{ key: 'hook', label: 'Hook' }], grid: true },
+      { kind: 'text', key: 'series_idea', label: 'Series idea' },
+    ],
+    task: 'Propose varied content concepts for the audience and goal, each with a strong hook.',
+    subjectField: 'business',
+    promptVersion: 'v1',
+    limitations: ['Adapt formats to the channels you actually use.'],
+    related: ['social-media-post-generator', 'blog-ideas-generator', 'caption-generator'],
+  },
+  {
+    kind: 'ai',
+    slug: 'caption-generator',
+    name: 'Caption Generator',
+    category: 'content',
+    summary: 'Caption variants for a specific post, matched to platform and tone.',
+    answer:
+      'The Caption Generator writes several caption options for a post you describe, formatted for the platform you choose and written in your tone, with optional hashtags kept relevant rather than stuffed.',
+    fields: [
+      F.area('post', 'What is the post about?', { required: true, min: 10, max: 800, placeholder: 'e.g. Photo of our new seasonal menu, launching Friday' }),
+      F.select('platform', 'Platform', PLATFORMS_SOCIAL),
+      F.tone(),
+      F.text('cta', 'What should people do?', { max: 120, placeholder: 'e.g. book a table' }),
+    ],
+    examples: [{ label: 'Menu launch', values: { post: 'Photo of our new autumn menu: squash risotto, braised short rib, apple tart. Launching Friday.', platform: 'Instagram', tone: 'Warm and friendly', cta: 'Book a table' } }],
+    outputLabel: 'Caption options',
+    schema: s.obj({
+      captions: s.arr(s.obj({ caption: s.text('The caption', 800), style: s.short('The approach used', 80) }), 4, 5, 'Captions'),
+      hashtags: s.arr(s.short('A relevant hashtag', 40), 0, 8, 'Hashtags (empty if not suited to the platform)'),
+    }),
+    view: [
+      { kind: 'cards', key: 'captions', title: 'style', body: 'caption' },
+      { kind: 'list', key: 'hashtags', label: 'Hashtags' },
+    ],
+    task: 'Write captions that fit the platform conventions and length. Use line breaks naturally. Hashtags only where the platform uses them.',
+    subjectField: 'post',
+    promptVersion: 'v1',
+    limitations: ['Check platform character limits for your account type.'],
+    related: ['social-media-post-generator', 'content-ideas-generator', 'title-generator'],
+  },
+  {
+    kind: 'ai',
+    slug: 'social-media-post-generator',
+    name: 'Social Media Post Generator',
+    category: 'content',
+    summary: 'Ready-to-edit posts for one platform, each with a different approach.',
+    answer:
+      'The Social Media Post Generator drafts posts about a topic for the platform you choose, with different approaches (story, tip, question, behind the scenes) and a suggested visual for each.',
+    fields: [F.business(), F.text('topic', 'Topic or announcement', { required: true, max: 300 }), F.select('platform', 'Platform', PLATFORMS_SOCIAL), F.tone()],
+    examples: [{ label: 'Accountant tip', values: { business: 'A two-person accounting firm for freelancers and creators.', topic: 'Quarterly estimated taxes are due soon', platform: 'LinkedIn', tone: 'Plain-spoken' } }],
+    outputLabel: 'Post drafts',
+    schema: s.obj({
+      posts: s.arr(
+        s.obj({ approach: s.enum(['Story', 'Tip', 'Question', 'Behind the scenes', 'Myth vs fact', 'Announcement'], 'Approach'), post: s.text('The post', 1500), visual: s.short('Suggested image or video', 180) }),
+        4,
+        5,
+        'Posts',
+      ),
+    }),
+    view: [{ kind: 'cards', key: 'posts', title: 'approach', body: 'post', fields: [{ key: 'visual', label: 'Visual' }] }],
+    task: 'Draft platform-appropriate posts in the chosen tone, each using a different approach. No invented statistics or testimonials.',
+    subjectField: 'topic',
+    promptVersion: 'v1',
+    limitations: ['Publishing is up to you; Vantaro does not post to your accounts.'],
+    related: ['caption-generator', 'content-ideas-generator', 'copywriting-generator'],
+  },
+  {
+    kind: 'ai',
+    slug: 'title-generator',
+    name: 'Title Generator',
+    category: 'content',
+    summary: 'Title alternatives for an article, video, email or talk.',
+    answer:
+      'The Title Generator writes alternative titles for a piece of content, mixing styles (direct, question, number, curiosity) and noting which is likely clearest so you can choose deliberately.',
+    fields: [
+      F.area('content', 'What is the content about?', { required: true, min: 10, max: 800 }),
+      F.select('format', 'Format', ['Blog article', 'YouTube video', 'Email newsletter', 'Podcast episode', 'Talk or webinar', 'Report or guide']),
+      F.audience(false),
+    ],
+    examples: [{ label: 'Pricing guide', values: { content: 'A guide explaining how freelance designers can move from hourly to project pricing, with three worked examples.', format: 'Blog article', audience: 'Freelance designers' } }],
+    outputLabel: 'Title options',
+    schema: s.obj({
+      titles: s.arr(s.obj({ title: s.short('Title', 110), style: s.enum(['Direct', 'Question', 'Number', 'How-to', 'Curiosity', 'Contrarian'], 'Style') }), 10, 12, 'Titles'),
+      clearest: s.short('Which title is clearest and why', 220),
+    }),
+    view: [
+      { kind: 'table', key: 'titles', columns: [{ key: 'title', label: 'Title' }, { key: 'style', label: 'Style' }] },
+      { kind: 'text', key: 'clearest', label: 'Clearest option' },
+    ],
+    task: 'Write accurate titles that do not overpromise. Mix styles. Avoid clickbait that the content cannot deliver.',
+    subjectField: 'content',
+    promptVersion: 'v1',
+    limitations: ['Make sure the title matches what the content actually delivers.'],
+    related: ['headline-analyzer', 'blog-ideas-generator', 'caption-generator'],
+  },
+  {
+    kind: 'ai',
+    slug: 'keyword-generator',
+    name: 'Keyword Generator',
+    category: 'content',
+    summary: 'Keyword ideas grouped by search intent. Suggestions only, no invented metrics.',
+    answer:
+      'The Keyword Generator suggests search phrases your customers might use, grouped by intent (learning, comparing, buying, local), with a content idea for each group. It does not show search volume or cost-per-click because it is not connected to search data.',
+    fields: [F.business(), F.audience(false), F.text('location', 'Location, if you serve one area', { max: 120 })],
+    examples: [{ label: 'Dog groomer', values: { business: 'Mobile dog grooming van: baths, haircuts and nail trims at your door.', audience: 'Busy dog owners', location: 'Baton Rouge' } }],
+    outputLabel: 'Keyword ideas by intent',
+    schema: s.obj({
+      note: s.short('One sentence stating these are suggestions without search volume data', 200),
+      groups: s.arr(
+        s.obj({
+          intent: s.enum(['Learning', 'Comparing', 'Buying', 'Local', 'Problem-aware'], 'Search intent'),
+          keywords: s.arr(s.short('A search phrase', 80), 5, 10, 'Keywords'),
+          content_idea: s.short('A page or post that would serve this intent', 200),
+        }),
+        3,
+        5,
+        'Groups',
+      ),
+    }),
+    view: [
+      { kind: 'text', key: 'note' },
+      { kind: 'cards', key: 'groups', title: 'intent', body: 'content_idea', fields: [{ key: 'keywords', label: 'Keywords' }] },
+    ],
+    task: 'Suggest realistic search phrases grouped by intent. Never state or estimate search volume, difficulty or CPC.',
+    subjectField: 'business',
+    promptVersion: 'v1',
+    limitations: ['No search volume, difficulty or cost data. Check promising phrases in a keyword research tool.'],
+    related: ['blog-ideas-generator', 'landing-page-generator', 'content-ideas-generator'],
+  },
+  {
+    kind: 'ai',
+    slug: 'prompt-generator',
+    name: 'Prompt Generator',
+    category: 'content',
+    summary: 'Reusable AI prompts with clearly marked input fields.',
+    answer:
+      'The Prompt Generator turns a marketing task you repeat into a reusable prompt for any AI assistant, with the variable parts marked as fields, an example of filled-in values, and tips for getting better results.',
+    fields: [
+      F.area('task', 'What task do you want a prompt for?', { required: true, min: 10, max: 600, placeholder: 'e.g. Write a weekly newsletter from my three latest blog posts' }),
+      F.text('context', 'Context the prompt should always include', { max: 400, placeholder: 'e.g. our brand voice, product names' }),
+    ],
+    examples: [{ label: 'Review replies', values: { task: 'Reply to Google reviews for my restaurant, both positive and negative.', context: 'We are a family-run Vietnamese restaurant. Warm, never defensive.' } }],
+    outputLabel: 'Reusable prompts',
+    schema: s.obj({
+      prompts: s.arr(
+        s.obj({
+          name: s.short('Prompt name', 80),
+          prompt: s.text('The full prompt with variables written as {{variable_name}}', 1800),
+          variables: s.arr(s.obj({ name: s.short('Variable', 40), description: s.short('What to put in it', 160) }), 1, 6, 'Variables'),
+          example_values: s.short('Example values for the variables', 300),
+        }),
+        2,
+        3,
+        'Prompts',
+      ),
+      tips: s.arr(s.short('A tip for better results', 160), 3, 4, 'Tips'),
+    }),
+    view: [
+      { kind: 'cards', key: 'prompts', title: 'name', body: 'prompt', fields: [{ key: 'variables', label: 'Variables' }, { key: 'example_values', label: 'Example values' }] },
+      { kind: 'list', key: 'tips', label: 'Tips' },
+    ],
+    task: 'Write clear, reusable prompts with variables in {{double_braces}}. Include role, context, task, constraints and output format in each prompt.',
+    subjectField: 'task',
+    promptVersion: 'v1',
+    limitations: ['Prompts work best when you add your real examples.'],
+    related: ['copywriting-generator', 'social-media-post-generator', 'content-ideas-generator'],
+  },
+];

@@ -1,0 +1,547 @@
+{
+  "ranAt": "2026-10-17T23:54:42.174Z",
+  "passed": 108,
+  "total": 108,
+  "results": [
+    {
+      "name": "GET / renders with one h1 and a canonical",
+      "ok": true,
+      "detail": "status=200 h1=1 canonical=true"
+    },
+    {
+      "name": "GET /features renders with one h1 and a canonical",
+      "ok": true,
+      "detail": "status=200 h1=1 canonical=true"
+    },
+    {
+      "name": "GET /features/advertising renders with one h1 and a canonical",
+      "ok": true,
+      "detail": "status=200 h1=1 canonical=true"
+    },
+    {
+      "name": "GET /marketing-strategy renders with one h1 and a canonical",
+      "ok": true,
+      "detail": "status=200 h1=1 canonical=true"
+    },
+    {
+      "name": "GET /free-tools renders with one h1 and a canonical",
+      "ok": true,
+      "detail": "status=200 h1=1 canonical=true"
+    },
+    {
+      "name": "GET /tools/slogan-generator renders with one h1 and a canonical",
+      "ok": true,
+      "detail": "status=200 h1=1 canonical=true"
+    },
+    {
+      "name": "GET /tools/market-size-calculator renders with one h1 and a canonical",
+      "ok": true,
+      "detail": "status=200 h1=1 canonical=true"
+    },
+    {
+      "name": "GET /examples renders with one h1 and a canonical",
+      "ok": true,
+      "detail": "status=200 h1=1 canonical=true"
+    },
+    {
+      "name": "GET /examples/strategy/window-and-solar-cleaning renders with one h1 and a canonical",
+      "ok": true,
+      "detail": "status=200 h1=1 canonical=true"
+    },
+    {
+      "name": "GET /solutions/agencies renders with one h1 and a canonical",
+      "ok": true,
+      "detail": "status=200 h1=1 canonical=true"
+    },
+    {
+      "name": "GET /pricing renders with one h1 and a canonical",
+      "ok": true,
+      "detail": "status=200 h1=1 canonical=true"
+    },
+    {
+      "name": "GET /faq renders with one h1 and a canonical",
+      "ok": true,
+      "detail": "status=200 h1=1 canonical=true"
+    },
+    {
+      "name": "GET /contact renders with one h1 and a canonical",
+      "ok": true,
+      "detail": "status=200 h1=1 canonical=true"
+    },
+    {
+      "name": "GET /about renders with one h1 and a canonical",
+      "ok": true,
+      "detail": "status=200 h1=1 canonical=true"
+    },
+    {
+      "name": "GET /resources renders with one h1 and a canonical",
+      "ok": true,
+      "detail": "status=200 h1=1 canonical=true"
+    },
+    {
+      "name": "GET /resources/tam-sam-som-explained renders with one h1 and a canonical",
+      "ok": true,
+      "detail": "status=200 h1=1 canonical=true"
+    },
+    {
+      "name": "GET /privacy renders with one h1 and a canonical",
+      "ok": true,
+      "detail": "status=200 h1=1 canonical=true"
+    },
+    {
+      "name": "GET /terms renders with one h1 and a canonical",
+      "ok": true,
+      "detail": "status=200 h1=1 canonical=true"
+    },
+    {
+      "name": "GET /login renders with one h1 and a canonical",
+      "ok": true,
+      "detail": "status=200 h1=1 canonical=true"
+    },
+    {
+      "name": "GET /signup renders with one h1 and a canonical",
+      "ok": true,
+      "detail": "status=200 h1=1 canonical=true"
+    },
+    {
+      "name": "Unknown route returns 404",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Preview deployment robots.txt disallows everything",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Sitemap lists tool pages and excludes private routes",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Workspace redirects anonymous visitors to login",
+      "ok": true,
+      "detail": "status=307"
+    },
+    {
+      "name": "Sign up user A",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Sign up user B",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Duplicate email is rejected",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Weak password is rejected",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Wrong password is rejected with a generic message",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Cross-site POST is refused",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Strategy needs a complete brief",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Brief autosaves and is complete",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Invalid brief values are rejected",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Strategy generation starts (202) and duplicate clicks return the same job",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Live strategy job succeeds through the provider (with one repair round)",
+      "ok": true,
+      "detail": "null"
+    },
+    {
+      "name": "All 11 sections are saved with live mode",
+      "ok": true,
+      "detail": "ready=11"
+    },
+    {
+      "name": "Provider receives key server-side, forced tool call, user input delimited",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Provider calls never include the API key in the prompt",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Free strategy quota is enforced server-side",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "User B cannot read A’s strategy (API)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "User B cannot open A’s strategy page",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "User B cannot export A’s strategy",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "User B cannot edit A’s section",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "User B cannot regenerate A’s section",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "User B cannot see A’s job",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "User B cannot create a share link for A’s strategy",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "User B cannot delete A’s strategy",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "User B search does not leak A’s strategy",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "User B strategy list is empty",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Owner can edit a section",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Stale edits are rejected with a conflict",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Regenerating an edited section requires confirmation",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Section regeneration succeeds",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "A version is saved before regeneration",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Restoring brings back the edited text",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Markdown export downloads",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Print view renders",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Experiments become action plan tasks",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Adding experiments twice does not duplicate tasks",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Tasks move between columns",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "User B cannot change A’s task",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Assistant question starts a job (202)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Assistant answer is stored in the strategy thread",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Assistant prompt delimits saved strategy and question as data",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Assistant jobs do not lock the strategy for editing",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "User B cannot read A’s assistant thread",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "User B cannot ask about A’s strategy",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "A revision needs a specific section",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Suggested revision is drafted without changing the section",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "User B cannot apply A’s suggested revision",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Applying a revision saves it as an owner edit",
+      "ok": "2026-10-17T23:54:41.240Z",
+      "detail": ""
+    },
+    {
+      "name": "A version is saved before a revision is applied",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "A revision cannot be applied twice",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "A revision based on an older version of the section is refused",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Share link is viewable without an account",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Shared page is noindex",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Shared page does not expose the brief",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Guessed share tokens show nothing",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Revoke share link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Revoked link stops working",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Tool input validation returns field errors",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Anonymous daily quota is enforced server-side",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Anonymous tool run succeeds",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Other visitors cannot read an anonymous job",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Saving requires an account",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "A run made before signing up can be saved after signing up",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Saved output is private to its workspace",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Calculator results are recomputed and saved server-side",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Invalid calculator inputs are refused",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Checkout session is created with the provider (test mode)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Checkout uses server-side key and configured price",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Webhook with a bad signature is rejected",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Webhook with a stale timestamp is rejected",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Webhook is processed once and replays are ignored",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Paid entitlement raises limits only after the verified webhook",
+      "ok": true,
+      "detail": "25 -> 150"
+    },
+    {
+      "name": "Billing page labels a test-mode purchase honestly",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Full refund removes paid access",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Health check reports the database is reachable",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Tool views are recorded through a same-origin beacon",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Only whitelisted events are stored, with no user content",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Contact form stores and delivers the message",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Honeypot submissions are accepted silently but not delivered",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Password reset email is sent through the provider",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Reset request does not reveal whether an account exists",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Reset link sets a new password and signs in",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Reset link cannot be reused",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Old sessions are signed out after a reset",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Account deletion removes the user",
+      "ok": true,
+      "detail": ""
+    }
+  ]
+}

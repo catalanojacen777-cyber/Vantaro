@@ -1,0 +1,10 @@
+@layer components {
+  .auth-shell { min-height: 100dvh; display: flex; flex-direction: column; background: radial-gradient(1200px 600px at 80% -10%, rgba(159, 211, 242, 0.06), transparent 60%), var(--obsidian); }
+  .auth-top { display: flex; justify-content: space-between; align-items: center; min-height: 68px; }
+  .auth-main { flex: 1; display: grid; place-items: center; padding: var(--s6) var(--gutter); }
+  .auth-card { width: min(100%, 420px); }
+  .auth-title { font-size: clamp(1.8rem, 1.5rem + 1.2vw, 2.4rem); font-stretch: 116%; letter-spacing: -0.032em; }
+  .auth-foot { display: flex; gap: var(--s5); min-height: 64px; align-items: center; }
+  .btn-show { pointer-events: auto !important; font-size: var(--fs-xs); color: var(--pewter); padding: 4px 6px; border-radius: 6px; }
+  .btn-show:hover { color: var(--bone); }
+}

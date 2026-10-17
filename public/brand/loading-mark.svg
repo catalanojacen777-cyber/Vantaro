@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Loading">
+  <style>
+    .sweep { animation: sweep 1.6s cubic-bezier(0.65, 0, 0.35, 1) infinite alternate; }
+    @keyframes sweep { from { transform: translateX(-28px); } to { transform: translateX(28px); } }
+    @media (prefers-reduced-motion: reduce) { .sweep { animation: none; } }
+  </style>
+  <defs>
+    <linearGradient id="chrome" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#6D7480"/>
+      <stop offset="0.42" stop-color="#9AA1AB"/>
+      <stop offset="0.5" stop-color="#F7F8FA"/>
+      <stop offset="0.58" stop-color="#9AA1AB"/>
+      <stop offset="1" stop-color="#6D7480"/>
+    </linearGradient>
+    <clipPath id="v"><path d="M5 15h12.4L32 47.2 45.6 5H58L38.7 58.5H25.3Z"/></clipPath>
+  </defs>
+  <g clip-path="url(#v)">
+    <rect x="-32" y="0" width="128" height="64" fill="url(#chrome)" class="sweep"/>
+  </g>
+</svg>
